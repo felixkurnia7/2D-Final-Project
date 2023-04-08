@@ -13,9 +13,12 @@ public class PlayerState
 
     // startTime berjalan setiap player memasuki suatu state. Ini bertujuan untuk mengetahui berapa lama player dalam state tersebut
     protected float startTime;
-    
+
+    protected bool isAnimationFinished;
+
     // variabel untuk menyimpan nama animasi yang akan dijalankan oleh animator
     private string animBoolName;
+    
 
     // Constructor
     public PlayerState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName)
@@ -34,6 +37,7 @@ public class PlayerState
         player.Anim.SetBool(animBoolName, true);
         startTime = Time.time;
         Debug.Log(animBoolName);
+        isAnimationFinished = false;
     }
 
     public virtual void Exit() // fungsi dipanggil saat keluar suatu state
@@ -56,4 +60,11 @@ public class PlayerState
     {
 
     }
+
+    public virtual void AnimationTrigger()
+    { 
+    
+    }
+
+    public virtual void AnimationFinishTrigger() => isAnimationFinished = true;
 }
